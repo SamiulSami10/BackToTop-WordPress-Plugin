@@ -1,7 +1,7 @@
 jQuery(document).ready(function ($) {
     var btn = $('#back-to-top');
+    var scrollSpeed = (typeof bttb_settings !== 'undefined' && bttb_settings.speed) ? bttb_settings.speed : 600;
 
-    // Show/hide on scroll
     $(window).scroll(function () {
         if ($(window).scrollTop() > 300) {
             btn.fadeIn();
@@ -10,8 +10,7 @@ jQuery(document).ready(function ($) {
         }
     });
 
-    // Scroll to top
     btn.click(function () {
-        $('html, body').animate({ scrollTop: 0 }, 600);
+        $('html, body').animate({ scrollTop: 0 }, scrollSpeed);
     });
 });
