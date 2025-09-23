@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Back To Top Button
  * Description: A simple plugin to add a back-to-top button with smooth scroll and customizable settings.
- * Version: 1.1
+ * Version: 1.2
  * Author: Pranto
  */
 
@@ -31,10 +31,6 @@ function bttb_enqueue_assets()
         }
     ";
     wp_add_inline_style('bttb-style', $custom_css);
-
-    // Pass scroll speed to JS
-    $speed = !empty($options['speed']) ? intval($options['speed']) : 600;
-    wp_localize_script('bttb-script', 'bttb_settings', array('speed' => $speed));
 }
 add_action('wp_enqueue_scripts', 'bttb_enqueue_assets');
 
@@ -80,14 +76,6 @@ function bttb_settings_page()
                             <option value="right" <?php selected($options['position'] ?? '', 'right'); ?>>Right</option>
                             <option value="left" <?php selected($options['position'] ?? '', 'left'); ?>>Left</option>
                         </select>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">Scroll Speed (ms)</th>
-                    <td>
-                        <input type="number" name="bttb_settings[speed]"
-                            value="<?php echo esc_attr($options['speed'] ?? '600'); ?>" min="100" step="100">
-                        <p class="description">How fast the page scrolls to top (in milliseconds).</p>
                     </td>
                 </tr>
             </table>
